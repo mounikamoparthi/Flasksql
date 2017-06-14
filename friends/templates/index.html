@@ -16,6 +16,7 @@
 </style>
     </head>
     <body>
+        
       <h3>Add a Friend</h3>
       <div id="displayresults">
          <table style="width:70%">
@@ -24,16 +25,22 @@
                         <th>Age</th>
                         <th>Friend Since</th>
             </tr>
-            {%for friend in friends: %}
-            <tr>
+            
+            {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+            {% endwith %}
+                {%for onefriend in friends: %}
+                    <tr>
+                        <td>{{onefriend['first_name'] + " " + onefriend['last_name']}}</td>
+                        <td>{{onefriend['age']}}</td>
+                        <td>{{onefriend['friend_since'].strftime('%Y-%m-%d')}}</td>
                 
-                        <td>{{friend['first_name'] + " " + friend['last_name']  }}</td>
-                        <td>{{friend['age']}}</td>
-                        <td>{{friend['friend_since'].strftime('%Y-%m-%d')}}</td>
-                
-            </tr>
-            {%endfor%}
-
+                    </tr>
+                {%endfor%}
         </table> 
       </div>
     <div id="formdetails">
