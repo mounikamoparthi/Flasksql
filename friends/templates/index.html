@@ -1,0 +1,48 @@
+<html>
+    <head>
+       <title>Friends:</title>
+       <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+        text-align: center;    
+    }
+    #formdetails{
+        margin-top: 400px;
+    }
+</style>
+    </head>
+    <body>
+      <h3>Add a Friend</h3>
+      <div id="displayresults">
+         <table style="width:70%">
+            <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Friend Since</th>
+            </tr>
+            {%for friend in friends: %}
+            <tr>
+                
+                        <td>{{friend['first_name'] + " " + friend['last_name']  }}</td>
+                        <td>{{friend['age']}}</td>
+                        <td>{{friend['friend_since'].strftime('%Y-%m-%d')}}</td>
+                
+            </tr>
+            {%endfor%}
+
+        </table> 
+      </div>
+    <div id="formdetails">
+      <form action='/friends' method='post'>
+          FirstName: <input type='text' name='first_name'>
+          LastName: <input type='text' name='last_name'>
+          Age: <input type='text' name='age'>
+          <input type='submit' value='Submit'>
+      </form>
+    </div>
+    </body>
+</html>
