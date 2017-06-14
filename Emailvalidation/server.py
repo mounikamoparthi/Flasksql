@@ -16,16 +16,19 @@ def index():
 def display():
     if len(request.form['emailid']) < 1:
         flash("Email cannot be blank!")
+        return redirect('/')
     elif not EMAIL_REGEX.match(request.form['emailid']):
         flash("Invalid Email Address!")
         return redirect('/')
     else:
-        flash("Success!")
-        emailid = mysql.query_db("SELECT * FROM email_valid")
-        query = "INSERT INTO email_valid (emailid) VALUES (:emailid)"
+        query = "INSERT INTO email_valid (emailid) VALUES (:newemailid)"
         data = {
-                'emailid': request.form['emailid']
+                'newemailid': request.form['emailid']
                 }
         mysql.query_db(query, data)
-    return render_template('result.html', emailid = emailid)
+    emailid = mysql.query_db("SELECT * FROM email_valid")
+    return render_template('result.html', emailid = emailid, newemailid = data['newemailid'])
+@app.route('/', methods = ['POST'])
+def goback():
+    return render_template("index.html")  
 app.run(debug=True) 

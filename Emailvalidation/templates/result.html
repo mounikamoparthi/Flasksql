@@ -13,10 +13,11 @@
         </style>
     </head>
     <body>
-        {{emailid}}
-          <h1> Email Addresses Entered: </h1>
-          <form action = '/email_display', method ='post'>
-           <table style="width:70%">
+          
+          <h1> The email address you entered {{newemailid}}<br>
+                is a VALID email address! Thank you! </h1>
+          <h2> Email Addresses Entered: </h2>
+           <table style="width:50%">
             <tr>
                         <th>Emailid</th>
             </tr>
@@ -28,6 +29,8 @@
             </tr>
             {%endfor%}
         </table> 
+        <form action='/' method='post'>
+                <input type='submit' value='Go Back'>
         </form>
     </body>
 </html>
