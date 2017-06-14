@@ -1,0 +1,33 @@
+<html>
+    <head>
+       <title>Email Address</title>
+       <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+                text-align: center;    
+            }
+        </style>
+    </head>
+    <body>
+        {{emailid}}
+          <h1> Email Addresses Entered: </h1>
+          <form action = '/email_display', method ='post'>
+           <table style="width:70%">
+            <tr>
+                        <th>Emailid</th>
+            </tr>
+            {%for emailid in emailid: %}
+            <tr>
+                
+                        <td>{{emailid['emailid']}}</td>
+                
+            </tr>
+            {%endfor%}
+        </table> 
+        </form>
+    </body>
+</html>
