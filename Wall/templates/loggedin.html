@@ -1,0 +1,41 @@
+    <html>
+    <head>
+       <title>The Wall</title>
+
+    </head>
+    <body><p>
+        <h2> CodingDojo Wall </h2>
+        <h3> Welcome {{session['firstname']}} </h3>
+        </p>
+        <h4> Post a message </h4>
+        <form action="/wall" method="post">
+            <br>
+            <textarea rows="4" cols="50" name="comment">
+            </textarea>
+            <input type="hidden" name="action" value="postmsg">
+            <input type="submit" name = 'postmsg' value = 'Post a message'>
+        </form>
+        <h2> Previous messages </h2>
+         
+        <table>
+        {% for msg in usermsgs %}
+        <td>
+        <tr><br> <br>{{msg['first_name']+ " " + msg['last_name'] + " - " + msg['created_at'].strftime("%Y-%m-%d %H:%M:%S")}} <br> {{msg['message']}}<br> <br> </tr>
+            <form action = "/wall" method = "post">
+                <input type="hidden" name="action" value="postcmt">
+                <tr> <input type = "submit"  name = 'postcmt' value = 'Post a comment'> </tr>
+                <input type = "hidden" name = 'msgid' value = {{msg['idmessages']}}>
+                <textarea rows="4" cols="50"  name="commenting">
+                </textarea> <br> <br>
+                {% for comments in usercomments %}
+                {% if comments['message_idmessage'] == msg['idmessages']%}
+                <tr> {{comments['comment'] + " - "+ comments['created_at'].strftime("%Y-%m-%d %H:%M:%S")}}<br> <br> </tr>
+                {%endif%}
+                {% endfor %}
+                
+            </form>
+        </td>
+        {% endfor%}
+        </table>
+    </body>
+    </html>
