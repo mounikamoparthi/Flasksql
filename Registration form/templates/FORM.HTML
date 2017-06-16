@@ -1,0 +1,47 @@
+<html>
+    <head>
+       <title>Registration Form</title>
+        
+   
+    </head>
+    <body>
+      <h1>Registration Form</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+ 
+        <form action="/result" method ="post">
+ 
+        <p>
+        <label for="firstname">FirstName:</label>
+
+        <input type="text" id ="firstname" name="firstname"
+        </p>
+        <p>
+        <label for="lastname">LastName:</label>
+        <input type="text" id ="lastname" name="lastname"
+
+        </p>
+                <p>
+        <label for="emailid">Email Id:</label>
+        <input type="text" id ="emailid" name="emailid"
+
+        </p><p>
+        <label for="password">PASSWORD:</label>
+        <input type="password" id ="password" name="password"
+        </p><p>
+        <label for="pw_confirm">Password Confirmation:</label>
+        <input type="password" name="pw_confirm">
+        </p><p>
+        <input  type="submit" value="Register">
+        </p>
+        </form>
+        <form action = '/loginpage' method = 'post'>
+            <input type = 'submit' value = 'Login'>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+from flask import Flask, render_template, request, redirect,flash,session
+app = Flask(__name__)
+app.secret_key="secret"
+
+@app.route('/')
+def index():
+  return render_template("index.html")
+
+ 
+
+@app.route('/result', methods=['POST'])
+def create_user():
+   print "Got Post Info"
+   print request.form 
+
+   name = request.form['name']
+   location = request.form['location']
+   favlang = request.form['favlang']
+   comments = request.form['comments']
+   print "length of comments" + str(len(comments))
+   if len(name) < 1 or len(comments) < 1:
+      if len(name) < 1:
+        flash("Please enter name")
+      if len(comments) < 1:
+        flash("Please enter comments")
+      return redirect('/')
+
+   return render_template('result.html',name=name,location=location,favlang=favlang,comments=comments)
+   return redirect('/')
+app.run(debug=True) 
